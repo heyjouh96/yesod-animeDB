@@ -11,9 +11,4 @@
 /serie/#SerieId/alterar             AlterarR    PUT
 /serie/#SerieId/mudarAno/#Int/ano   ModAnoR     PATCH
 
-/ator                               AtorR       POST
-/atores                             ListaAtorR  GET
-
-/ator/#AtorId/atuaem/#SerieId       ContratoR   POST
-/ator/#AtorId/series                AtuacaoR    GET
-/serie/#SerieId/elenco              ElencoR     GET
+/anime                              AnimeR       POST

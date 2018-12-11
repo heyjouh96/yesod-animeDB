@@ -1,3 +1,10 @@
+Anime json
+    titulo      Text
+    descricao   Text
+    imagem      Text
+    genero      Text
+    deriving    Show 
+
 Serie json
     titulo      Text
     genero      Text
