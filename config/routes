@@ -3,4 +3,17 @@
 /favicon.ico FaviconR GET
 /robots.txt RobotsR GET
 
-/ HomeR GET 
+/serie                              SerieR      POST 
+/series                             TodasR      GET
+/serie/#Text/buscar                 BuscarR     GET
+/serie/#SerieId/desc                DescR       GET
+/serie/#SerieId/apagar              ApagarR     DELETE
+/serie/#SerieId/alterar             AlterarR    PUT
+/serie/#SerieId/mudarAno/#Int/ano   ModAnoR     PATCH
+
+/ator                               AtorR       POST
+/atores                             ListaAtorR  GET
+
+/ator/#AtorId/atuaem/#SerieId       ContratoR   POST
+/ator/#AtorId/series                AtuacaoR    GET
+/serie/#SerieId/elenco              ElencoR     GET
