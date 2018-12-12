@@ -49,3 +49,11 @@ deleteApagarR animeid = do
     _ <- runDB $ get404 animeid
     runDB $ delete animeid
     sendStatusJSON noContent204 (object [])
+    
+-- Mostrar anime pelo nome
+
+-- select * from anime where nome ilike %nome%
+getBuscarR :: Text -> Handler TypedContent
+getBuscarR nome = do
+    anime <- runDB $ selectList [Filter AnimeTitulo (Left $  concat ["%", nome, "%"]) (BackendSpecificFilter "ILIKE")] []
+    sendStatusJSON ok200 (object ["resp" .= anime])

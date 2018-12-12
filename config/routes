@@ -12,7 +12,8 @@
 /serie/#SerieId/mudarAno/#Int/ano   ModAnoR     PATCH
 
 /anime                              AnimeR          POST
-/anime/#AnimeId/mostrar             MostrarAnimeR   GET
 /animes                             AnimesR         GET
-/serie/#AnimeId/alterar             AlterarR         PUT
-/serie/#AnimeId/apagar              ApagarR     DELETE
+/serie/#Text/buscar                 BuscarR         GET
+/anime/#AnimeId/mostrar             MostrarAnimeR   GET
+/serie/#AnimeId/alterar             AlterarR        PUT
+/serie/#AnimeId/apagar              ApagarR         DELETE
