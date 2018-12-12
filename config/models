@@ -8,6 +8,10 @@ Anime json
 Genero json
     descricao   Text
     deriving Show
+    
+Nota json
+    valor   Int
+    animeid AnimeId
 
 Serie json
     titulo      Text
