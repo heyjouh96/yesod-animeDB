@@ -32,3 +32,13 @@ getAnimesR = do
     
 -- curl https://yesodia2-wickedjhow.c9users.io/animes 
 
+-- update from anime
+-- set ...
+-- where anime.id = animeid
+putEditarR :: AnimeId -> Handler TypedContent
+putEditarR animeid = do
+    _ <- runDB $ get404 serieid
+    novoAnime <- requireJsonBody :: Handler Serie
+    runDB $ replace serieid novoAnime
+    sendStatusJSON noContent204 (object [])
+

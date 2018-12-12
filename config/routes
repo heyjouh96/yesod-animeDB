@@ -14,3 +14,4 @@
 /anime                              AnimeR          POST
 /anime/#AnimeId/mostrar             MostrarAnimeR   GET
 /animes                             AnimesR         GET
+/serie/#AnimeId/editar              EditarR    PUT
