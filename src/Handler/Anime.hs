@@ -35,10 +35,17 @@ getAnimesR = do
 -- update from anime
 -- set ...
 -- where anime.id = animeid
-putEditarR :: AnimeId -> Handler TypedContent
-putEditarR animeid = do
-    _ <- runDB $ get404 serieid
+putAlterarR :: AnimeId -> Handler TypedContent
+putAlterarR animeid = do
+    _ <- runDB $ get404 animeid
     novoAnime <- requireJsonBody :: Handler Serie
-    runDB $ replace serieid novoAnime
+    runDB $ replace animeid novoAnime
     sendStatusJSON noContent204 (object [])
+    
+-- Apagar anime
 
+deleteApagarR :: SerieId -> Handler TypedContent
+deleteApagarR animeid = do
+    _ <- runDB $ get404 animeid
+    runDB $ delete animeid
+    sendStatusJSON noContent204 (object [])
