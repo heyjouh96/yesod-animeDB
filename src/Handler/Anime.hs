@@ -14,7 +14,7 @@ postAnimeR = do
     animeid <- runDB $ insert anime
     sendStatusJSON created201 (object ["resp" .= animeid])
     
--- curl -X POST https://yesodia2-wickedjhow.c9users.io/anime -d '{"titulo":"Jojo's Bizzare Adventure","descricao":"Pancadaria Solta","imagem":"http://www.animationmagazine.net/wordpress/wp-content/uploads/jojos-bizarre-adventure-post2-1.jpg","genero":"acao"}'
+-- curl -X POST https://yesodia2-wickedjhow.c9users.io/anime -d '{"titulo":"Jojos Bizzare Adventure","descricao":"Pancadaria Solta","imagem":"http://www.animationmagazine.net/wordpress/wp-content/uploads/jojos-bizarre-adventure-post2-1.jpg","generoid":1}'
 
 getMostrarAnimeR :: AnimeId -> Handler TypedContent
 getMostrarAnimeR animeid = do 
@@ -43,7 +43,7 @@ putAlterarR animeid = do
     runDB $ replace animeid novoAnime
     sendStatusJSON noContent204 (object [])
     
--- curl -X PUT https://yesodia2-wickedjhow.c9users.io/anime/2/alterar -d '{"titulo":"Naruto","descricao":"Boruto só que melhor","imagem":"nao","genero":"shonnen"}'
+-- curl -X PUT https://yesodia2-wickedjhow.c9users.io/anime/2/alterar -d '{"titulo":"Naruto","descricao":"Boruto só que melhor","imagem":"nao","generoid":1}'
     
 -- Apagar anime
 
@@ -67,8 +67,3 @@ getBuscarR nome = do
     
 -- curl https://yesodia2-wickedjhow.c9users.io/anime/naru/buscar
 
-getGenerosR :: Handler TypedContent
-getGenerosR = do
-    addHeader "Access-Control-Allow-Origin" "*"
-    generos <- runDB $ selectList [] [Asc GeneroDescricao]
-    sendStatusJSON ok200 (object ["resp" .= generos]) 
