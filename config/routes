@@ -3,17 +3,9 @@
 /favicon.ico FaviconR GET
 /robots.txt RobotsR GET
 
-/serie                              SerieR      POST 
-/series                             TodasR      GET
-/serie/#Text/buscar                 BuscarR     GET
-/serie/#SerieId/desc                DescR       GET
-/serie/#SerieId/apagar              ApagarR     DELETE
-/serie/#SerieId/alterar             AlterarR    PUT
-/serie/#SerieId/mudarAno/#Int/ano   ModAnoR     PATCH
-
 /anime                              AnimeR          POST
 /animes                             AnimesR         GET
-/serie/#Text/buscar                 BuscarR         GET
+/anime/#Text/buscar                 BuscarR         GET
 /anime/#AnimeId/mostrar             MostrarAnimeR   GET
-/serie/#AnimeId/alterar             AlterarR        PUT
-/serie/#AnimeId/apagar              ApagarR         DELETE
+/anime/#AnimeId/alterar             AlterarR        PUT
+/anime/#AnimeId/apagar              ApagarR         DELETE
