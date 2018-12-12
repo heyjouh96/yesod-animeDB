@@ -14,3 +14,4 @@
 /animes/genero/#GeneroId            AnimeByGeneroR  GET
 
 /nota                               NotaR           POST
+/nota/#AnimeId                      NotaAnimeR      GET

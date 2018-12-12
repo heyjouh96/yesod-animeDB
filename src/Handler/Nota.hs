@@ -16,20 +16,12 @@ postNotaR = do
 
 -- curl -X POST https://yesodia2-wickedjhow.c9users.io/nota -d '{"valor":10,"animeid":1}'
 
-
-
--- getGenerosR :: Handler TypedContent
--- getGenerosR = do
---     addHeader "Access-Control-Allow-Origin" "*"
---     generos <- runDB $ selectList [] [Asc GeneroDescricao]
---     sendStatusJSON ok200 (object ["resp" .= generos]) 
+getNotaAnimeR :: AnimeId -> Handler TypedContent
+getNotaAnimeR animeid = do
+    addHeader "Access-Control-Allow-Origin" "*"
+    notas <- runDB $ selectList [NotaAnimeid ==. animeid] []
+    -- [10,8,...]
+    nota <- return $ fmap (notaValor . entityVal) notas
+    sendStatusJSON ok200 (object ["resp" .= nota])
     
--- -- curl https://yesodia2-wickedjhow.c9users.io/anime/generos
-
--- getAnimeByGeneroR :: GeneroId -> Handler TypedContent
--- getAnimeByGeneroR generoid = do 
---     addHeader "Access-Control-Allow-Origin" "*"
---     animes <- runDB $ selectList [AnimeGeneroid ==. generoid] [Asc AnimeTitulo]
---     sendStatusJSON ok200 (object ["resp" .= animes])
-    
--- curl https://yesodia2-wickedjhow.c9users.io/animes/genero/1
+-- curl https://yesodia2-wickedjhow.c9users.io/nota/1
