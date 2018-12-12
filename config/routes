@@ -11,4 +11,5 @@
 /serie/#SerieId/alterar             AlterarR    PUT
 /serie/#SerieId/mudarAno/#Int/ano   ModAnoR     PATCH
 
-/anime                              AnimeR       POST
+/anime                              AnimeR      POST
+/animes                             AnimesR     GET
