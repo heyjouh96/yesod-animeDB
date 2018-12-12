@@ -2,8 +2,12 @@ Anime json
     titulo      Text
     descricao   Text
     imagem      Text
-    genero      Text
+    generoid    GeneroId
     deriving    Show 
+    
+Genero json
+    descricao   Text
+    deriving Show
 
 Serie json
     titulo      Text

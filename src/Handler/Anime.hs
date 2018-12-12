@@ -66,3 +66,9 @@ getBuscarR nome = do
     sendStatusJSON ok200 (object ["resp" .= anime])
     
 -- curl https://yesodia2-wickedjhow.c9users.io/anime/naru/buscar
+
+getGenerosR :: Handler TypedContent
+getGenerosR = do
+    addHeader "Access-Control-Allow-Origin" "*"
+    generos <- runDB $ selectList [] [Asc GeneroDescricao]
+    sendStatusJSON ok200 (object ["resp" .= generos]) 

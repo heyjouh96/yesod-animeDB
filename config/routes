@@ -9,3 +9,4 @@
 /anime/#AnimeId/mostrar             MostrarAnimeR   GET
 /anime/#AnimeId/alterar             AlterarR        PUT
 /anime/#AnimeId/apagar              ApagarR         DELETE
+/anime/generos                      GenerosR        GET
