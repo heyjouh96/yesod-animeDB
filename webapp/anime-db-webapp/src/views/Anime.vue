@@ -1,6 +1,6 @@
 <template>
-    <section class="fdb-block" style="background-image: url(https://cdn.jsdelivr.net/gh/froala/design-blocks@2.0.1/dist/imgs/shapes/8.svg);" data-block-type="forms" data-id="7" draggable="true">
- <div class="container">
+<section class="fdb-block" style="background-image: url(https://cdn.jsdelivr.net/gh/froala/design-blocks@2.0.1/dist/imgs/shapes/8.svg);" data-block-type="forms" data-id="7" draggable="true">
+  <div class="container">
     <div class="row align-items-center">
       <div class="col-12 col-md-7 col-lg-5 ml-md-auto">
         <h1>{{ anime.titulo }}</h1>
@@ -13,15 +13,15 @@
       <div class="col-sm-6 text-left">
         <div class="fdb-box p-0">
           <img alt="image" class="img-fluid rounded-0" :src="anime.imagem">
-<div class="alterar" @click="editar()">
+          <div class="alterar" @click="editar()">
             Alterar
           </div>
           <div class="content p-3">
             <h3><strong>{{ anime.titulo }}</strong></h3>
             <p>Nota: {{ getNota(animeId) }}</p>
-            <p>Genero: </p>
+            <p>Genero: {{ getGeneroById(anime.generoid) }} </p>
           </div>
-      </div>
+        </div>
       </div>
     </div>
   </div>
@@ -29,66 +29,85 @@
 </template>
 
 <script>
-    import axios from 'axios';
+import axios from 'axios';
 
-    export default {
-        name: "Consulta",
-        data() {
-            return {
-                anime: [],
-                animeId: this.$route.params.input,
-            }
-        },
-        computed: {},
-        mounted() {
-            this.getAnime(this.animeId);
-        },
-        methods: {
-            getAnime: function(animeId) {
-                axios
-                    .get('https://yesodia2-wickedjhow.c9users.io/anime/' + animeId + '/mostrar')
-                    .then(response => (this.anime = response.data.resp))
-                    .then(console.log(this.anime))
-            },
+export default {
+  name: "Consulta",
+  data() {
+    return {
+      anime: [],
+      animeId: this.$route.params.input,
+    }
+  },
+  computed: {},
+  mounted() {
+    this.getAnime(this.animeId);
+    this.getGenreList();
+  },
+  methods: {
+    getAnime: function (animeId) {
+      axios
+        .get('https://yesodia2-wickedjhow.c9users.io/anime/' + animeId + '/mostrar')
+        .then(response => (this.anime = response.data.resp))
+        .then(console.log(this.anime))
+    },
 
-            getNota: function(id) {
-                    const average = arr => arr.reduce( ( p, c ) => p + c, 0 ) / arr.length;
+    getNota: function (id) {
+      const average = arr => arr.reduce((p, c) => p + c, 0) / arr.length;
 
-                    axios
-                    .get('https://yesodia2-wickedjhow.c9users.io/nota/' + id)
-                    .then(response => (this.nota = response.data.resp))
-                    
-                    return (this.nota == undefined ? 0 : average(this.nota)); 
-            },
-            goto: function(id) {
-                this.$router.push("/anime/" + id);
-            },
-            editar: function() {
-                this.$router.push("/editar/" + this.animeId);
-            }
-        },
-    };
+      axios
+        .get('https://yesodia2-wickedjhow.c9users.io/nota/' + id)
+        .then(response => (this.nota = response.data.resp))
+
+      return (this.nota == undefined ? 0 : average(this.nota));
+    },
+    goto: function (id) {
+      this.$router.push("/anime/" + id);
+    },
+    editar: function () {
+      this.$router.push("/editar/" + this.animeId);
+    },
+    getGenreList: function () {
+      axios
+        .get('https://yesodia2-wickedjhow.c9users.io/anime/generos')
+        .then(response => (this.generos = response.data.resp))
+    },
+    getGeneroById(id) {
+      switch (id) {
+        case 1:
+          return "Ação"
+          break;
+        case 2:
+          return "Drama"
+          break;
+        case 3:
+          return "Romance"
+          break;
+      }
+    },
+  },
+};
 </script>
 
 <style lang="scss">
-    .alterar {
-        position: absolute;
-        top: 0;
-        right: 15px;
-        background: white;
-        /* width: 80px; */
-        padding: 10px;
-        text-align: center;
-        border-bottom-left-radius: 10px;
-        border-bottom-right-radius: 10px;
-        font-weight: solid;
-        font-weight: bold;
-        font-size: 16px;
-        cursor: pointer;
-        transition: 0.5s;
+.alterar {
+  position: absolute;
+  top: 0;
+  right: 15px;
+  background: white;
+  /* width: 80px; */
+  padding: 10px;
+  text-align: center;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  font-weight: solid;
+  font-weight: bold;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.5s;
 
-        &:hover {
-            box-shadow: 0 3px 8px rgba(#222, 0.3);
-        }
-    }
+  &:hover {
+    box-shadow: 0 3px 8px rgba(#222, 0.3);
+  }
+}
 </style>
