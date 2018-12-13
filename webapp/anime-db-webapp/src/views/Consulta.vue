@@ -61,4 +61,13 @@ export default {
 </script>
 
 <style lang="scss">
+.fdb-box {
+  cursor: pointer;
+  transition: 0.5s;
+  
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 3px 8px rgba(#111, 0.3);
+  }
+}
 </style>

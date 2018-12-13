@@ -64,7 +64,7 @@
                 this.$router.push("/anime/" + id);
             },
             editar: function(id) {
-                this.$router.push("/anime/" + id);
+                this.$router.push("/editar/" + id);
             }
         },
     };

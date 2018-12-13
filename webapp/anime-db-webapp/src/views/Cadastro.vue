@@ -78,10 +78,10 @@ export default {
       console.log(genero);
       
       axios.post('https://yesodia2-wickedjhow.c9users.io/anime', {
-        titulo: 'Teste',
-        descricao: 'Flintstone',
-        imagem: 'teste',
-        id: '3'
+          titulo: this.titulo,
+          descricao: this.descricao,
+          imagem: this.imagem,
+          id: this.genero
       })
       .then(function (response) {
         console.log(response);
