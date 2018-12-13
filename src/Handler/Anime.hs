@@ -81,3 +81,5 @@ getComentariosR animeid = do
     addHeader "Access-Control-Allow-Origin" "*"
     comentarios <- runDB $ selectList [ComentarioAnimeid ==. animeid] []
     sendStatusJSON ok200 (object ["resp" .= comentarios])
+    
+-- curl https://yesodia2-wickedjhow.c9users.io/anime/1/comentarios
