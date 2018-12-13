@@ -71,6 +71,19 @@ export default {
         .then(console.log(this.generos))
     },
 
+    toastSuccess(message, timer = 4000, showbutton = false) {
+      this.$swal({
+        type: 'success',
+        toast: true,
+        text: message,
+        position: 'top-end',
+        customClass: 'alert__tixsme alert__sucess',
+        background: '#333',
+        timer: timer,
+        showConfirmButton: showbutton,
+      });
+    },
+
     postAnime: function () {
 
       let titulo = document.getElementById("titulo").value;
@@ -82,9 +95,8 @@ export default {
         titulo: titulo,
         descricao: descricao,
         imagem: imagem,
-        generoid: genero,
+        generoid: 2,
       };
-      
 
       console.log(data);
 
@@ -92,9 +104,9 @@ export default {
         url: "https://yesodia2-wickedjhow.c9users.io/anime",
         type: "POST",
         data: JSON.stringify(data)
-      });
+      }).then(this.$router.push("/")).then(this.toastSuccess("Anime cadastrado!"));
 
-      fd.done(function(resp) {
+      fd.done(function (resp) {
         console.log(resp);
       })
     }

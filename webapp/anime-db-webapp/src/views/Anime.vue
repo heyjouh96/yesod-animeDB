@@ -1,4 +1,5 @@
 <template>
+<div>
 <section class="fdb-block" style="background-image: url(https://cdn.jsdelivr.net/gh/froala/design-blocks@2.0.1/dist/imgs/shapes/8.svg);" data-block-type="forms" data-id="7" draggable="true">
   <div class="container">
     <div class="row align-items-center">
@@ -26,6 +27,28 @@
     </div>
   </div>
 </section>
+<section class="fdb-block">
+  <div class="container">
+    <div class="row text-center justify-content-center">
+      <div class="col-md-10 col-lg-7">
+        <h3 v-show="comentarios.length > 0" >Comentários</h3>
+      </div>
+    </div>
+
+    <div class="row mt-5 justify-content-center">
+      <div class="col-md-10 col-lg-3 ml-auto mr-auto text-center" v-for="(item, index) in comentarios" :key='index' >
+        <p class="h3 mb-4 mb-lg-5">{{item.comentario}}</p>
+      </div>
+    </div>
+  </div>
+
+    <div class="row text-center justify-content-center">
+      <div class="col-md-10 col-lg-7">
+        <h3 style="cursor: pointer" @click="comentar">Comentar</h3>
+      </div>
+    </div>
+</section>
+</div>
 </template>
 
 <script>
@@ -36,6 +59,7 @@ export default {
   data() {
     return {
       anime: [],
+      comentarios: [],
       animeId: this.$route.params.input,
     }
   },
@@ -43,6 +67,7 @@ export default {
   mounted() {
     this.getAnime(this.animeId);
     this.getGenreList();
+    this.getComentarios(this.animeId);
   },
   methods: {
     getAnime: function (animeId) {
@@ -51,7 +76,12 @@ export default {
         .then(response => (this.anime = response.data.resp))
         .then(console.log(this.anime))
     },
-
+    getComentarios: function () {
+      axios
+        .get('https://yesodia2-wickedjhow.c9users.io/anime/' + this.animeId + '/comentarios')
+        .then(response => (this.comentarios = response.data.resp))
+        .then(console.log(this.comentarios))
+    },
     getNota: function (id) {
       const average = arr => arr.reduce((p, c) => p + c, 0) / arr.length;
 
@@ -63,6 +93,9 @@ export default {
     },
     goto: function (id) {
       this.$router.push("/anime/" + id);
+    },
+    comentar: function () {
+      this.$router.push("/comentar/" + this.animeId);
     },
     editar: function () {
       this.$router.push("/editar/" + this.animeId);

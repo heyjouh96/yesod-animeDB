@@ -27,6 +27,12 @@ export default new Router({
       component: () => import( /* webpackChunkName: "about" */ './views/Anime.vue')
     },
     {
+      path: '/comentar/:input',
+      name: 'comentar',
+      props: true,
+      component: () => import( /* webpackChunkName: "about" */ './views/Comentar.vue')
+    },
+    {
       path: '/cadastro',
       name: 'cadastro',
       component: () => import( /* webpackChunkName: "about" */ './views/Cadastro.vue')

@@ -109,7 +109,7 @@ export default {
         url: "https://yesodia2-wickedjhow.c9users.io/anime/" + this.animeId + "/alterar",
         type: "POST",
         data: JSON.stringify(data)
-      });
+      }).then(this.toastSuccess("Anime alterado!"));;
 
       fd.done(function (resp) {
         console.log(resp);
