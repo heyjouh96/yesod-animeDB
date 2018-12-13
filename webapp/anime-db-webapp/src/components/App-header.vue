@@ -20,6 +20,10 @@
           <li class="nav-item">
                <router-link class="nav-link" to="consultar" tag="a">Consulta</router-link>
           </li>
+          
+          <li class="nav-item">
+               <router-link class="nav-link" to="deletar" tag="a">Deleção</router-link>
+          </li>
         </ul>
                 <ul class="navbar-nav justify-content-end d-none d-lg-flex ml-md-auto">
           <li class="nav-item">
