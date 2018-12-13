@@ -13,7 +13,7 @@
       <div class="col-sm-6 text-left">
         <div class="fdb-box p-0">
           <img alt="image" class="img-fluid rounded-0" :src="anime.imagem">
-<div class="alterar" @click="editar(anime.id)">
+<div class="alterar" @click="editar()">
             Alterar
           </div>
           <div class="content p-3">
@@ -63,8 +63,8 @@
             goto: function(id) {
                 this.$router.push("/anime/" + id);
             },
-            editar: function(id) {
-                this.$router.push("/editar/" + id);
+            editar: function() {
+                this.$router.push("/editar/" + this.animeId);
             }
         },
     };

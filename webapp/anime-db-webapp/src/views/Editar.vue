@@ -62,15 +62,15 @@
     mounted() {
       this.getGeneros();
       this.getAnime(this.animeId);
-      
+
     },
     methods: {
-        getGeneros: function() {
-      axios
-        .get('https://yesodia2-wickedjhow.c9users.io/anime/generos')
-        .then(response => (this.generos = response.data.resp))
-        .then(console.log(this.generos))
-    },
+      getGeneros: function() {
+        axios
+          .get('https://yesodia2-wickedjhow.c9users.io/anime/generos')
+          .then(response => (this.generos = response.data.resp))
+          .then(console.log(this.generos))
+      },
       getAnime: function(animeId) {
         axios
           .get('https://yesodia2-wickedjhow.c9users.io/anime/' + animeId + '/mostrar')
@@ -79,12 +79,12 @@
       },
     },
     deleteAnime: function(animeId) {
-        axios
-          .delete('https://yesodia2-wickedjhow.c9users.io/anime/' + animeId + '/apagar')
-          .then(response => (this.anime = response.data.resp))
-          .then(console.log(this.anime))
-      },
-    
+      axios
+        .delete('https://yesodia2-wickedjhow.c9users.io/anime/' + animeId + '/apagar')
+        .then(response => (this.anime = response.data.resp))
+        .then(console.log(this.anime))
+    },
+
 
     editarAnime: function() {
 
@@ -95,7 +95,7 @@
 
       console.log(genero);
 
-      axios.post('https://yesodia2-wickedjhow.c9users.io/anime/' + animeId  + '/alterar', {
+      axios.post('https://yesodia2-wickedjhow.c9users.io/anime/' + animeId + '/alterar', {
           titulo: this.titulo,
           descricao: this.descricao,
           imagem: this.imagem,
