@@ -7,6 +7,7 @@
 module Handler.Anime where
 
 import Import
+import Database.Persist
 
 postAnimeR :: Handler TypedContent
 postAnimeR = do
@@ -36,9 +37,9 @@ getAnimesR = do
 -- update from anime
 -- set ...
 -- where anime.id = animeid
-putAlterarR :: AnimeId -> Handler TypedContent
-putAlterarR animeid = do
-    addHeader "Access-Control-Allow-Origin" "*" 
+postAlterarR :: AnimeId -> Handler TypedContent
+postAlterarR animeid = do
+    addHeader "ACCESS-CONTROL-ALLOW-ORIGIN" "*" 
     _ <- runDB $ get404 animeid
     novoAnime <- requireJsonBody :: Handler Anime
     runDB $ replace animeid novoAnime
@@ -48,12 +49,13 @@ putAlterarR animeid = do
     
 -- Apagar anime
 
-deleteApagarR :: AnimeId -> Handler TypedContent
-deleteApagarR animeid = do
+postApagarR :: AnimeId -> Handler TypedContent
+postApagarR animeid = do
     addHeader "Access-Control-Allow-Origin" "*"
     _ <- runDB $ get404 animeid
-    runDB $ delete animeid
+    runDB $ deleteCascade animeid
     sendStatusJSON noContent204 (object [])
+    
     
 -- curl -X DELETE https://yesodia2-wickedjhow.c9users.io/anime/3/apagar
     
