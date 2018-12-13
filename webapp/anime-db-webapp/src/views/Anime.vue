@@ -18,7 +18,7 @@
           </div>
           <div class="content p-3">
             <h3><strong>{{ anime.titulo }}</strong></h3>
-            <p>Nota: {{ getNota(anime.id) }}</p>
+            <p>Nota: {{ getNota(animeId) }}</p>
             <p>Genero: </p>
           </div>
       </div>
@@ -36,7 +36,6 @@
         data() {
             return {
                 anime: [],
-                nota: [],
                 animeId: this.$route.params.input,
             }
         },
@@ -53,12 +52,13 @@
             },
 
             getNota: function(id) {
+                    const average = arr => arr.reduce( ( p, c ) => p + c, 0 ) / arr.length;
 
-                axios
+                    axios
                     .get('https://yesodia2-wickedjhow.c9users.io/nota/' + id)
                     .then(response => (this.nota = response.data.resp))
-
-                return (this.nota);
+                    
+                    return (this.nota == undefined ? 0 : average(this.nota)); 
             },
             goto: function(id) {
                 this.$router.push("/anime/" + id);
