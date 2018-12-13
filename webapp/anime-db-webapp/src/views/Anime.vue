@@ -36,7 +36,6 @@
         data() {
             return {
                 anime: [],
-                nota: [],
                 animeId: this.$route.params.input,
             }
         },
