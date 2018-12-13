@@ -13,7 +13,9 @@
       <div class="col-sm-6 text-left">
         <div class="fdb-box p-0">
           <img alt="image" class="img-fluid rounded-0" :src="anime.imagem">
-
+<div class="alterar" @click="editar(anime.id)">
+            Alterar
+          </div>
           <div class="content p-3">
             <h3><strong>{{ anime.titulo }}</strong></h3>
             <p>Nota: {{ getNota(anime.id) }}</p>
@@ -27,43 +29,66 @@
 </template>
 
 <script>
-import axios from 'axios';
+    import axios from 'axios';
 
-export default {
-  name: "Consulta",
-  data() {
-    return {
-      anime: [],
-      nota: [],
-      animeId: this.$route.params.input,
-    }
-  },
-  computed: {},
-  mounted () {
-    this.getAnime(this.animeId);
-  },
-  methods: {
-    getAnime: function(animeId) {
-      axios
-      .get('https://yesodia2-wickedjhow.c9users.io/anime/' + animeId + '/mostrar')
-      .then(response => (this.anime = response.data.resp))
-      .then(console.log(this.anime)) 
-    },
-    
-    getNota: function(id) {
-      
-      axios
-      .get('https://yesodia2-wickedjhow.c9users.io/nota/' + id)
-      .then(response => (this.nota = response.data.resp))
-    
-      return (this.nota); 
-    },
-    goto: function(id) {
-          this.$router.push("/anime/" + id);
-      }
-  },
-};
+    export default {
+        name: "Consulta",
+        data() {
+            return {
+                anime: [],
+                nota: [],
+                animeId: this.$route.params.input,
+            }
+        },
+        computed: {},
+        mounted() {
+            this.getAnime(this.animeId);
+        },
+        methods: {
+            getAnime: function(animeId) {
+                axios
+                    .get('https://yesodia2-wickedjhow.c9users.io/anime/' + animeId + '/mostrar')
+                    .then(response => (this.anime = response.data.resp))
+                    .then(console.log(this.anime))
+            },
+
+            getNota: function(id) {
+
+                axios
+                    .get('https://yesodia2-wickedjhow.c9users.io/nota/' + id)
+                    .then(response => (this.nota = response.data.resp))
+
+                return (this.nota);
+            },
+            goto: function(id) {
+                this.$router.push("/anime/" + id);
+            },
+            editar: function(id) {
+                this.$router.push("/anime/" + id);
+            }
+        },
+    };
 </script>
 
 <style lang="scss">
+    .alterar {
+        position: absolute;
+        top: 0;
+        right: 15px;
+        background: white;
+        /* width: 80px; */
+        padding: 10px;
+        text-align: center;
+        border-bottom-left-radius: 10px;
+        border-bottom-right-radius: 10px;
+        font-weight: solid;
+        font-weight: bold;
+        font-size: 16px;
+        cursor: pointer;
+        transition: 0.5s;
+
+        &:hover {
+            box-shadow: 0 3px 8px rgba(#222, 0.3);
+        }
+    }
 </style>

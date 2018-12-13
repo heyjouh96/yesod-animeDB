@@ -33,8 +33,9 @@ export default new Router({
     },
     
     {
-      path: '/editar',
+      path: '/editar/:input',
       name: 'editar',
+      props: true,
       component: () => import( /* webpackChunkName: "about" */ './views/Editar.vue')
     },
       {path: '*', redirect: '/'}

@@ -7,7 +7,7 @@
       <div class="col-sm-3 text-left" v-for="(item, index) in animes" :key='index' @click="goto(item.id)">
         <div class="fdb-box p-0">
           <img alt="image" class="img-fluid rounded-0" :src="item.imagem">
-
+          
           <div class="content p-3">
             <h3><strong>{{ item.titulo }}</strong></h3>
             <p>Nota: {{ getNota(item.id) }}</p>
