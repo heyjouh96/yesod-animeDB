@@ -14,7 +14,6 @@
           
           <div class="content p-3">
             <h3><strong>{{ item.titulo }}</strong></h3>
-            <p>Nota: {{ getNota(item.id) }}</p>
             <p>Genero: {{ item.descricao }}</p>
           </div>
         </div>
@@ -28,7 +27,6 @@
 
 <script>
 import axios from 'axios';
-
 export default {
   name: "Consulta",
   data() {
@@ -36,6 +34,8 @@ export default {
       animes: [],
       nota: []
     }
+  },
+  components: {
   },
   computed: {},
   mounted () {

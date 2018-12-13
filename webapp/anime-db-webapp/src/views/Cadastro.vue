@@ -48,6 +48,9 @@
 
 <script>
 import axios from 'axios';
+import qs from 'qs'
+
+
 export default {
   name: "Consulta",
   data() {
@@ -70,28 +73,43 @@ export default {
     
     postAnime: function() {
       
-      let titulo = document.getElementById("titulo");
-      let descricao = document.getElementById("descricao");
-      let imagem = document.getElementById("imagem");
+      let titulo = document.getElementById("titulo").value;
+      let descricao = document.getElementById("descricao").value;
+      let imagem = document.getElementById("imagem").value;
       let genero = document.getElementById("genero").value;
-      
-      console.log(genero);
-      
-      axios.post('https://yesodia2-wickedjhow.c9users.io/anime', {
-          titulo: this.titulo,
-          descricao: this.descricao,
-          imagem: this.imagem,
-          id: this.genero
-      })
-      .then(function (response) {
-        console.log(response);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
-    }
-  },
-};
+
+      let data = {
+        titulo: "titulo",
+        descricao: "descricao",
+        imagem: "imagem",
+        generoid: 1,
+      };
+
+      // axios.post('https://yesodia2-wickedjhow.c9users.io/anime', qs.stringify(data))
+
+      // url = 'https://yesodia2-wickedjhow.c9users.io/anime';
+
+      // const options = {
+      //   method: 'POST',
+      //   headers: { 'content-type': 'application/x-www-form-urlencoded', "Access-Control-Allow-Origin": "*" },
+      //   data: qs.stringify(data),
+      //   url: 'https://yesodia2-wickedjhow.c9users.io/anime',
+      // };
+      // axios(options);
+
+      this.$http.post('https://yesodia2-wickedjhow.c9users.io/anime', {titulo: "titulo",
+        descricao: "descricao",
+        imagem: "imagem",
+        generoid: 1}).then    (function (response) {
+            // Success
+            console.log(response.data)
+        },function (response) {
+            // Error
+            console.log(response.data)
+        });
+            }
+          },
+        };
 </script>
 
 <style lang="scss">
