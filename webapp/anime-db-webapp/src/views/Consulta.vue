@@ -16,7 +16,7 @@
               <div class="content p-3" style="padding-top: 0!important; padding-bottom: 0!important">
                 <h3><strong>{{ item.titulo }}</strong></h3>
                 <p class="mb-0 pb-0">Genero: {{ getGeneroById(item.generoid) }}</p>
-                <p class="mb-0 pb-0">Descricao: {{ item.descricao }}</p>
+                <p class="mb-0 pb-0">Descricao: {{ trimDescricao(item.descricao) }}</p>
               </div>
             </div>
           </div>
@@ -70,6 +70,13 @@ export default {
       }
     },
 
+    trimDescricao: function(desc) {
+        if (desc.length > 30) {
+          return desc.substring(0, 30) + "...";
+        } else {
+          return desc;
+        }
+    },
     getNota: function (id) {
       const average = arr => arr.reduce((p, c) => p + c, 0) / arr.length;
 

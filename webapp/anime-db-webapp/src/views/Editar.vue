@@ -6,7 +6,7 @@
         <div class="fdb-box fdb-touch">
           <div class="row">
             <div class="col">
-              <h1>Cadastrar anime</h1>
+              <h1>Editar anime</h1>
             </div>
           </div>
           <div class="row">
@@ -91,6 +91,12 @@ export default {
         this.$router.push("/");
       })
     },
+    trimDescricao: function(desc) {
+        if (desc.length > 30) {
+          alert(desc);
+          return desc.substring(0, 30) + "...";
+        }
+    },
     editarAnime: function () {
 
       let titulo = document.getElementById("titulo").value;
@@ -108,8 +114,14 @@ export default {
       var fd = $.ajax({
         url: "https://yesodia2-wickedjhow.c9users.io/anime/" + this.animeId + "/alterar",
         type: "POST",
-        data: JSON.stringify(data)
-      }).then(this.toastSuccess("Anime alterado!"));;
+        data: JSON.stringify({
+          titulo: titulo,
+          descricao: descricao,
+          imagem: imagem,
+          generoid: parseInt(genero, 10),
+        })
+      })
+      .then(this.$router.push("/consulta")).then(this.toastSuccess("Anime editado!"));
 
       fd.done(function (resp) {
         console.log(resp);

@@ -103,7 +103,12 @@ export default {
       var fd = $.ajax({
         url: "https://yesodia2-wickedjhow.c9users.io/anime",
         type: "POST",
-        data: JSON.stringify(data)
+        data: JSON.stringify({
+        titulo: titulo,
+        descricao: descricao,
+        imagem: imagem,
+        generoid: parseInt(genero, 10),
+        })
       }).then(this.$router.push("/")).then(this.toastSuccess("Anime cadastrado!"));
 
       fd.done(function (resp) {

@@ -20,7 +20,7 @@
         </ul>
         
                 <ul class="navbar-nav justify-content-center d-none d-lg-flex ml-md-auto col-4">
-                          <input type="text" class="form-control" id="search" @keyup.enter.native="pesquisar" @keyup.native="keyup" placeholder="Procurar">
+                          <input type="text" class="form-control" id="search" @keyup.enter.native="pesquisar" @keyup.native="keyup" placeholder="Digitar nome do anime">
         <a class="btn" id="btn-pesquisa" @click="pesquisar" style="    ">Pesquisar</a>
                           
                 </ul>
