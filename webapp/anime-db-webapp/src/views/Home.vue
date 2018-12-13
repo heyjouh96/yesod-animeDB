@@ -111,10 +111,26 @@
 </template>
 
 <script>
+import vueAlert from 'vue-sweetalert2';
+
 export default {
   name: "Home",
   computed: {},
-  methods: {}
+  methods: {
+      toastSuccess(message, timer = 4000, showbutton = false) {
+      this.$swal({
+        type: 'success',
+        toast: true,
+        text: message,
+        position: 'top-end',
+        customClass: 'alert__tixsme alert__sucess',
+        background: '#333',
+        timer: timer,
+        showConfirmButton: showbutton,
+      });
+    },
+  },
+
 };
 </script>
 

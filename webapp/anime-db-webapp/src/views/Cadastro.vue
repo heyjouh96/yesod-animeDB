@@ -82,7 +82,7 @@ export default {
         titulo: titulo,
         descricao: descricao,
         imagem: imagem,
-        generoid: 1,
+        generoid: genero,
       };
       
 

@@ -79,11 +79,17 @@ export default {
         .then(response => (this.anime = response.data.resp))
         .then(console.log(this.anime))
     },
-    deleteAnime: function (animeId) {
-      axios
-        .delete('https://yesodia2-wickedjhow.c9users.io/anime/' + animeId + '/apagar')
-        .then(response => (this.anime = response.data.resp))
-        .then(console.log(this.anime))
+    deletarAnime: function (animeId) {
+
+      var fd = $.ajax({
+        url: "https://yesodia2-wickedjhow.c9users.io/anime/" + this.animeId + "/apagar",
+        type: "POST"
+      }).then(this.$router.push("/")).then(this.toastSuccess("Anime deletado!"));
+
+      fd.done(function (resp) {
+        console.log(resp);
+        this.$router.push("/");
+      })
     },
     editarAnime: function () {
 
@@ -96,19 +102,31 @@ export default {
         titulo: titulo,
         descricao: descricao,
         imagem: imagem,
-        generoid: genero,
+        generoid: 2,
       };
 
       var fd = $.ajax({
         url: "https://yesodia2-wickedjhow.c9users.io/anime/" + this.animeId + "/alterar",
-        type: "PUT",
+        type: "POST",
         data: JSON.stringify(data)
       });
 
-      fd.done(function(resp) {
+      fd.done(function (resp) {
         console.log(resp);
       })
-    }
+    },
+    toastSuccess(message, timer = 4000, showbutton = false) {
+      this.$swal({
+        type: 'success',
+        toast: true,
+        text: message,
+        position: 'top-end',
+        customClass: 'alert__tixsme alert__sucess',
+        background: '#333',
+        timer: timer,
+        showConfirmButton: showbutton,
+      });
+    },
   }
 };
 </script>
