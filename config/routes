@@ -7,8 +7,8 @@
 /animes                             AnimesR         GET
 /anime/#Text/buscar                 BuscarR         GET
 /anime/#AnimeId/mostrar             MostrarAnimeR   GET
-/anime/#AnimeId/alterar             AlterarR        PUT
-/anime/#AnimeId/apagar              ApagarR         DELETE
+/anime/#AnimeId/alterar             AlterarR        POST
+/anime/#AnimeId/apagar              ApagarR         POST
 
 /anime/generos                      GenerosR        GET
 /animes/genero/#GeneroId            AnimeByGeneroR  GET
