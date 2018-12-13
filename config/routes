@@ -12,6 +12,7 @@
 
 /anime/generos                      GenerosR        GET
 /animes/genero/#GeneroId            AnimeByGeneroR  GET
+/anime/comentar                     ComentarioR     POST
 
 /nota                               NotaR           POST
 /nota/#AnimeId                      NotaAnimeR      GET

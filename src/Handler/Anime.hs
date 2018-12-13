@@ -14,13 +14,13 @@ postAnimeR = do
     animeid <- runDB $ insert anime
     sendStatusJSON created201 (object ["resp" .= animeid])
     
--- curl -X POST https://yesodia2-wickedjhow.c9users.io/anime -d '{"titulo":"Jojos Bizzare Adventure","descricao":"Pancadaria Solta","imagem":"http://www.animationmagazine.net/wordpress/wp-content/uploads/jojos-bizarre-adventure-post2-1.jpg","generoid":1}'
+-- curl -X POST https://yesodia2-wickedjhow.c9users.io/anime -d '{"titulo":"One Piece","descricao":"Aventura de Piratas","imagem":"https://www.barnesandnoble.com/blog/sci-fi-fantasy/wp-content/uploads/sites/4/2017/07/onepiece2.jpg","generoid":1}'
 
 getMostrarAnimeR :: AnimeId -> Handler TypedContent
 getMostrarAnimeR animeid = do 
     addHeader "Access-Control-Allow-Origin" "*"
     anime <- runDB $ get404 animeid
-    sendStatusJSON ok200 (object ["resp" .= anime])
+    sendStatusJSON ok200 (object ["resp" .= anime]) 
     
 -- curl https://yesodia2-wickedjhow.c9users.io/anime/1/mostrar
     
@@ -66,4 +66,11 @@ getBuscarR nome = do
     sendStatusJSON ok200 (object ["resp" .= anime])
     
 -- curl https://yesodia2-wickedjhow.c9users.io/anime/naru/buscar
+
+postComentarioR :: Handler TypedContent
+postComentarioR = do
+    addHeader "Access-Control-Allow-Origin" "*"
+    comentario <- requireJsonBody :: Handler Comentario
+    comentarioid <- runDB $ insert comentario
+    sendStatusJSON created201 (object ["resp" .= comentarioid])
 

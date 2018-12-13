@@ -12,6 +12,11 @@ Genero json
 Nota json
     valor   Int
     animeid AnimeId
+    
+Comentario json
+    comentario  Text
+    animeid     AnimeId
+    deriving Show
 
 Serie json
     titulo      Text
