@@ -1,7 +1,6 @@
 <template>
 <div class="">
   <section class="main">
-   
     <app-header></app-header>
     <div style="">
       <transition name="component-fade" mode="out-in">

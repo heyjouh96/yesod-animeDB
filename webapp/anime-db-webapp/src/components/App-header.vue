@@ -11,9 +11,9 @@ import $ from "jquery";
 export default {
   name: "AppHeader",
   components: {
-    AppSearch
+    
   },
-  mixins: [func],
+  mixins: [],
   data: function () {
     return {
      
@@ -27,12 +27,7 @@ export default {
    
     goto(to, item = null) {
       switch (to) {
-        case "legacy:my_account":
-          this.gotoLegacy(null, "myaccount");
-          break;
-        case "system:logout":
-          this.$store.dispatch('logout');
-          break;
+        
       }
     },
 }
