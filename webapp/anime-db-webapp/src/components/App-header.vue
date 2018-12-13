@@ -20,7 +20,9 @@
         </ul>
         
                 <ul class="navbar-nav justify-content-center d-none d-lg-flex ml-md-auto col-4">
-                          <input type="text" class="form-control" id="comentario" placeholder="Procurar">
+                          <input type="text" class="form-control" id="search" @keyup.enter.native="pesquisar" @keyup.native="keyup" placeholder="Procurar">
+        <a class="btn" id="btn-pesquisa" @click="pesquisar" style="    ">Pesquisar</a>
+                          
                 </ul>
                 <ul class="navbar-nav justify-content-end d-none d-lg-flex ml-md-auto">
           <li class="nav-item">
@@ -37,6 +39,7 @@
 <script>
 import Vue from 'vue';
 import VueResource from "vue-resource";
+import axios from 'axios';
 
 import $ from "jquery";
 
@@ -62,9 +65,38 @@ export default {
         
       }
     },
+
+    pesquisar() {
+      var query = document.getElementById('search').value;
+
+      this.$router.push("/pesquisa/" + query);
+    },
+    keyup(event) {
+      switch (event.key) {
+        case "Enter":
+          this.pesquisar();
+        break;
+      }
+    },
 }
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
+#btn-pesquisa {
+  position: absolute;
+    /* right: 0; */
+    /* padding: 0; */
+    border: 0;
+    right: 0;
+    font-size: 12px;
+    border-radius: unset;
+    top: 4px;
+    margin-left: 0;
+    transition: 0.5s;
+    &:hover {
+    transition: 0.5s;
+    transform: translateY(-1px);  
+    }
+}
 </style>

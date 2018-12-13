@@ -27,6 +27,12 @@ export default new Router({
       component: () => import( /* webpackChunkName: "about" */ './views/Anime.vue')
     },
     {
+      path: '/pesquisa/:input',
+      name: 'consulta',
+      props: true,
+      component: () => import( /* webpackChunkName: "about" */ './views/Pesquisa.vue')
+    },
+    {
       path: '/comentar/:input',
       name: 'comentar',
       props: true,
