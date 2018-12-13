@@ -17,23 +17,5 @@ Comentario json
     comentario  Text
     animeid     AnimeId
     deriving Show
-
-Serie json
-    titulo      Text
-    genero      Text
-    ano         Int
-    UniqueSerie titulo
-    deriving Show
-
-AtuaEm json
-    serieid     SerieId
-    atorid      AtorId
-    deriving Show
-    
-Ator json
-    nome         Text
-    nascimento   Text
-    dtNascimento Text
-    deriving Show
                     
 			
