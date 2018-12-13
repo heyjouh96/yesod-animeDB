@@ -21,10 +21,17 @@ export default new Router({
       component: () => import( /* webpackChunkName: "about" */ './views/Consulta.vue')
     },
     {
+      path: '/consulta/:input',
+      name: 'consulta',
+      props: true,
+      component: () => import( /* webpackChunkName: "about" */ './views/Anime.vue')
+    },
+    {
       path: '/cadastro',
       name: 'cadastro',
       component: () => import( /* webpackChunkName: "about" */ './views/Cadastro.vue')
     },
+    
     {
       path: '/editar',
       name: 'editar',

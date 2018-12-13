@@ -54,7 +54,7 @@ export default {
       return (this.nota); 
     },
     goto: function(id) {
-          this.$router.push("/anime/" + id);
+          this.$router.push("/consulta/" + id);
       }
   },
 };
