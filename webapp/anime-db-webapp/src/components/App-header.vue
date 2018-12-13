@@ -14,7 +14,7 @@
         <ul class="navbar-nav mr-auto">
           
           <li class="nav-item">
-               <router-link class="nav-link" to="consulta" tag="a">Consulta</router-link>
+            <a href="/consulta" class="nav-link">Consulta</a>
           </li>
           
         </ul>

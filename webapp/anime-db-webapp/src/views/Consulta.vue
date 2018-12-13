@@ -4,6 +4,10 @@
     <section class="" data-block-type="teams" data-id="9" draggable="true">
   <div class="container">
     <div class="row">
+          <div class="col-sm-12 pb-2 text-left mt-0">
+            <h3 class="result__container">Resultados encontrados: {{ animes.length }}
+            </h3>
+        </div>
       <div class="col-sm-3 text-left" v-for="(item, index) in animes" :key='index' @click="goto(item.id)">
         <div class="fdb-box p-0">
           <img alt="image" class="img-fluid rounded-0" :src="item.imagem">
@@ -46,12 +50,13 @@ export default {
     },
     
     getNota: function(id) {
-      
+      const average = arr => arr.reduce( ( p, c ) => p + c, 0 ) / arr.length;
+
       axios
       .get('https://yesodia2-wickedjhow.c9users.io/nota/' + id)
       .then(response => (this.nota = response.data.resp))
       
-      return (this.nota); 
+      return (average(this.nota)); 
     },
     goto: function(id) {
           this.$router.push("/consulta/" + id);
