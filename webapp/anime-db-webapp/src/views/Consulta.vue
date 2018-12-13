@@ -14,7 +14,8 @@
           
           <div class="content p-3">
             <h3><strong>{{ item.titulo }}</strong></h3>
-            <p>Genero: {{ item.descricao }}</p>
+            <p class="mb-0 pb-0">Genero: {{ getGeneroById(item.generoid) }}</p>
+            <p class="mb-0 pb-0">Descricao: {{ item.descricao }}</p>
           </div>
         </div>
       </div>
@@ -32,7 +33,8 @@ export default {
   data() {
     return {
       animes: [],
-      nota: []
+      nota: [],
+      generos: []
     }
   },
   components: {
@@ -40,6 +42,7 @@ export default {
   computed: {},
   mounted () {
     this.getAnimes();
+    this.getGenreList();
   },
   methods: {
     getAnimes: function() {
@@ -47,6 +50,11 @@ export default {
       .get('https://yesodia2-wickedjhow.c9users.io/animes')
       .then(response => (this.animes = response.data.resp))
       //.then(console.log(this.animes)) 
+    },
+    getGenreList: function() {
+      axios
+      .get('https://yesodia2-wickedjhow.c9users.io/anime/generos')
+      .then(response => (this.generos = response.data.resp))
     },
     
     getNota: function(id) {
@@ -60,12 +68,25 @@ export default {
     },
     goto: function(id) {
           this.$router.push("/consulta/" + id);
+      },
+    getGeneroById(id) {
+      switch(id) {
+        case 1 : 
+          return "Ação"
+          break;
+        case 2 :
+          return "Drama"
+          break;
+        case 3 :
+          return "Romance"
+          break;
       }
+    }
   },
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .fdb-box {
   cursor: pointer;
   transition: 0.5s;
@@ -73,6 +94,15 @@ export default {
   &:hover {
     transform: translateY(-2px);
     box-shadow: 0 3px 8px rgba(#111, 0.3);
+  }
+}
+
+.fdb-block .fdb-box {
+  height: 400px!important;
+  margin-bottom: 30px;
+
+  img {
+    height: 250px;
   }
 }
 </style>

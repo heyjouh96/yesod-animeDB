@@ -50,7 +50,7 @@
 <script>
 import axios from 'axios';
 import qs from 'qs'
-
+import $ from 'jquery';
 export default {
   name: "Consulta",
   data() {
@@ -92,33 +92,22 @@ export default {
       let imagem = document.getElementById("imagem").value;
       let genero = document.getElementById("genero").value;
 
-      let data = {
-        titulo,
-        descricao,
-        imagem,
-        genero
+      var data = {
+        titulo: titulo,
+        descricao: descricao,
+        imagem: imagem,
+        generoid: genero,
       };
 
-      axios.put('https://yesodia2-wickedjhow.c9users.io/anime/1/alterar', qs.stringify(data))
+      var fd = $.ajax({
+        url: "https://yesodia2-wickedjhow.c9users.io/anime/" + this.animeId + "/alterar",
+        type: "PUT",
+        data: JSON.stringify(data)
+      });
 
-      // axios.put('https://yesodia2-wickedjhow.c9users.io/anime/1/alterar', {
-      //     data: {
-      //       titulo: this.titulo,
-      //       descricao: this.descricao,
-      //       imagem: this.imagem,
-      //       generoId: this.genero
-      //     },
-      //     withCredentials: false,
-      //     headers: {
-      //       "Access-Control-Allow-Origin": "*",
-      //     }
-      //   })
-      //   .then(function (response) {
-      //     console.log(response);
-      //   })
-      //   .catch(function (error) {
-      //     console.log(error);
-      //   });
+      fd.done(function(resp) {
+        console.log(resp);
+      })
     }
   }
 };
