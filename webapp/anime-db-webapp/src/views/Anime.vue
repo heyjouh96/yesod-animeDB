@@ -13,12 +13,27 @@
 
       <div class="col-sm-6 text-left">
         <div class="fdb-box p-0">
-          <img alt="image" class="img-fluid rounded-0" :src="anime.imagem">
+              <div alt="image" class="div-img img-fluid rounded-0"  :style="{ backgroundImage: 'url(\'' + anime.imagem + '\')' }" style="height: 400px; background-size: cover; background-position: center bottom;">
+              </div>
           <div class="alterar" @click="editar()">
             Alterar
           </div>
           <div class="content p-3">
             <h3><strong>{{ anime.titulo }}</strong></h3>
+            <p>Avaliar: <label for="exampleFormControlSelect1"></label>
+                <select class="ml-3 mr-3" id="nota">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                </select>
+                <span @click="votarAnime" style="font-size: 14px; cursor: pointer">Confirmar</span>            
             <p>Nota: {{ getNota(animeId) }}</p>
             <p>Genero: {{ getGeneroById(anime.generoid) }} </p>
           </div>
@@ -53,6 +68,7 @@
 
 <script>
 import axios from 'axios';
+import $ from 'jquery';
 
 export default {
   name: "Consulta",
@@ -117,6 +133,35 @@ export default {
           return "Romance"
           break;
       }
+    },
+     votarAnime: function () {
+
+      let nota = document.getElementById("nota").value;
+
+      var fd = $.ajax({
+        url: "https://yesodia2-wickedjhow.c9users.io/nota",
+        type: "POST",
+        data: JSON.stringify({
+          valor: parseInt(nota, 10),
+          animeid: parseInt(this.animeId, 10)
+        })
+      }).then(this.toastSuccess("Nota avaliada!"));;
+
+      fd.done(function (resp) {
+        console.log(resp);
+      })
+    },
+    toastSuccess(message, timer = 4000, showbutton = false) {
+      this.$swal({
+        type: 'success',
+        toast: true,
+        text: message,
+        position: 'top-end',
+        customClass: 'alert__tixsme alert__sucess',
+        background: '#333',
+        timer: timer,
+        showConfirmButton: showbutton,
+      });
     },
   },
 };

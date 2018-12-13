@@ -10,7 +10,8 @@
           </div>
           <div class="col-sm-3 text-left" v-for="(item, index) in animes" :key='index' @click="goto(item.id)">
             <div class="fdb-box p-0">
-              <img alt="image" class="img-fluid rounded-0" :src="item.imagem">
+              <div alt="image" class="div-img img-fluid rounded-0"  :style="{ backgroundImage: 'url(\'' + item.imagem + '\')' }" style="background-size: cover;">
+              </div>
 
               <div class="content p-3" style="padding-top: 0!important; padding-bottom: 0!important">
                 <h3><strong>{{ item.titulo }}</strong></h3>
@@ -98,15 +99,15 @@ export default {
 }
 
 .fdb-block .fdb-box {
-  height: 310px !important;
+  height: 330px !important;
   margin-bottom: 30px;
   font-size: 13px;
   font-weight: bold;
 h3 {
   font-size: 14px;
 }
-  img {
-    height: 220px;
+  .div-img {
+    height: 230px;
   }
 }
 </style>

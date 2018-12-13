@@ -102,7 +102,7 @@ export default {
         titulo: titulo,
         descricao: descricao,
         imagem: imagem,
-        generoid: 2,
+        generoid: parseInt(this.animeId, 10),
       };
 
       var fd = $.ajax({
