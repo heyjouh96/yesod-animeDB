@@ -74,3 +74,10 @@ postComentarioR = do
     comentarioid <- runDB $ insert comentario
     sendStatusJSON created201 (object ["resp" .= comentarioid])
 
+-- curl -X POST https://yesodia2-wickedjhow.c9users.io/anime/comentar -d '{"comentario":"Muito bom, gostei!","animeid":1}'
+
+getComentariosR :: AnimeId -> Handler TypedContent
+getComentariosR animeid = do 
+    addHeader "Access-Control-Allow-Origin" "*"
+    comentarios <- runDB $ selectList [ComentarioAnimeid ==. animeid] []
+    sendStatusJSON ok200 (object ["resp" .= comentarios])
