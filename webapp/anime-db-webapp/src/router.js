@@ -11,9 +11,19 @@ export default new Router({
       component: () => import( /* webpackChunkName: "about" */ './views/Home.vue')
     },
     {
-      path: '/admin',
-      name: 'admin',
-      component: () => import( /* webpackChunkName: "about" */ './views/Event.vue')
+      path: '/delecao',
+      name: 'delecao',
+      component: () => import( /* webpackChunkName: "about" */ './views/Delecao.vue')
+    },
+    {
+      path: '/consulta',
+      name: 'consulta',
+      component: () => import( /* webpackChunkName: "about" */ './views/Consulta.vue')
+    },
+    {
+      path: '/cadastro',
+      name: 'cadastro',
+      component: () => import( /* webpackChunkName: "about" */ './views/Cadastro.vue')
     },
       {path: '*', redirect: '/'}
   ],
