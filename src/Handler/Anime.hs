@@ -3,13 +3,14 @@
 {-# LANGUAGE TemplateHaskell #-}
 {-# LANGUAGE MultiParamTypeClasses #-}
 {-# LANGUAGE TypeFamilies #-}
+{-# LANGUAGE DeriveGeneric #-}
 module Handler.Anime where
 
 import Import
 
 postAnimeR :: Handler TypedContent
 postAnimeR = do
-    addHeader "Access-Control-Allow-Origin" "*"
+    addHeader "ACCESS-CONTROL-ALLOW-ORIGIN" "*"
     anime <- requireJsonBody :: Handler Anime
     animeid <- runDB $ insert anime
     sendStatusJSON created201 (object ["resp" .= animeid])
@@ -37,13 +38,13 @@ getAnimesR = do
 -- where anime.id = animeid
 putAlterarR :: AnimeId -> Handler TypedContent
 putAlterarR animeid = do
-    addHeader "Access-Control-Allow-Origin" "*"
+    addHeader "Access-Control-Allow-Origin" "*" 
     _ <- runDB $ get404 animeid
     novoAnime <- requireJsonBody :: Handler Anime
     runDB $ replace animeid novoAnime
     sendStatusJSON noContent204 (object [])
     
--- curl -X PUT https://yesodia2-wickedjhow.c9users.io/anime/2/alterar -d '{"titulo":"Naruto","descricao":"Boruto só que melhor","imagem":"nao","generoid":1}'
+-- curl -X PUT https://yesodia2-wickedjhow.c9users.io/anime/2/alterar -d '{"titulo":"Jojos Bizzare Adventure","descricao":"Nova descrição...","imagem":"http://www.animationmagazine.net/wordpress/wp-content/uploads/jojos-bizarre-adventure-post2-1.jpg","generoid":1}'
     
 -- Apagar anime
 
