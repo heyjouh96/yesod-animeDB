@@ -6,7 +6,7 @@
                 <div class="fdb-box fdb-touch">
           <div class="row">
             <div class="col">
-              <h1>Cadastrar anime</h1>
+              <h1>Deletar anime</h1>
             </div>
           </div>
           <div class="row">
@@ -40,7 +40,7 @@
           </div>
           <div class="row mt-4">
             <div class="col">
-              <button class="btn btn-primary" type="button">Cadastrar</button>
+              <button class="btn btn-primary" type="button">Deletar</button>
             </div>
           </div>
         </div>
