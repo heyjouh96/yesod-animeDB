@@ -22,7 +22,7 @@
           </li>
           
           <li class="nav-item">
-               <router-link class="nav-link" to="deletar" tag="a">Deleção</router-link>
+               <router-link class="nav-link" to="delecao" tag="a">Deleção</router-link>
           </li>
         </ul>
                 <ul class="navbar-nav justify-content-end d-none d-lg-flex ml-md-auto">

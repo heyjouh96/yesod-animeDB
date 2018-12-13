@@ -23,7 +23,7 @@
           <div class="row mt-4">
               <div class="col">
             <label for="exampleFormControlSelect1">Genero</label>
-            <select class="form-control" id="exampleFormControlSelect1">
+            <select class="form-control" id="genero">
               <option  v-for="(item, index) in generos" :key='index' :value="item.id">{{ item.descricao }}</option>
             </select>
           </div>
@@ -36,7 +36,7 @@
           </div>
           <div class="row mt-4">
             <div class="col">
-              <button class="btn btn-primary" type="button">Cadastrar</button>
+              <button class="btn btn-primary" type="button" @click="postAnime">Cadastrar</button>
             </div>
           </div>
         </div>
@@ -58,7 +58,6 @@ export default {
   computed: {},
   mounted () {
     this.getList();
-    this.postAnime();
    
   },
   methods: {
@@ -70,6 +69,14 @@ export default {
     },
     
     postAnime: function() {
+      
+      let titulo = document.getElementById("titulo");
+      let descricao = document.getElementById("descricao");
+      let imagem = document.getElementById("imagem");
+      let genero = document.getElementById("genero").value;
+      
+      console.log(genero);
+      
       axios.post('https://yesodia2-wickedjhow.c9users.io/anime', {
         titulo: 'Teste',
         descricao: 'Flintstone',

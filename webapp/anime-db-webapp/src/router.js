@@ -25,6 +25,11 @@ export default new Router({
       name: 'cadastro',
       component: () => import( /* webpackChunkName: "about" */ './views/Cadastro.vue')
     },
+    {
+      path: '/editar',
+      name: 'editar',
+      component: () => import( /* webpackChunkName: "about" */ './views/Editar.vue')
+    },
       {path: '*', redirect: '/'}
   ],
   scrollBehavior (to, from, savedPosition) {
